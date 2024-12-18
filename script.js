@@ -2157,9 +2157,7 @@ function renderQuiz() {
       const answerDiv = document.createElement("div");
       answerDiv.classList.add("answer");
       answerDiv.textContent = answer;
-      if (answer.toLowerCase().startsWith(q.correctAnswer.toLowerCase())) {
-        answerDiv.classList.add("correct");
-      }
+
       answerDiv.onclick = () =>
         checkAnswer(questionDiv, answerDiv, answer, q.correctAnswer);
       questionDiv.appendChild(answerDiv);
