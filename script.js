@@ -2151,6 +2151,7 @@ function renderQuiz() {
     const questionDiv = document.createElement("div");
     questionDiv.classList.add("question");
     questionDiv.setAttribute("data-question-index", index);
+    questionDiv.setAttribute("id", `question-${index + 1}`); // Set an id for each question for easy reference
     questionDiv.innerHTML = `<h3>${q.question}</h3>`;
 
     q.answers.forEach((answer) => {
@@ -2177,7 +2178,7 @@ function checkAnswer(
   // Clear styles for all answers in the same question
   const answers = questionDiv.querySelectorAll(".answer");
   answers.forEach((answer) => {
-    answer.classList.remove("correct", "wrong", "correct");
+    answer.classList.remove("correct", "wrong");
   });
 
   // Apply style for the selected answer
@@ -2188,4 +2189,22 @@ function checkAnswer(
   }
 }
 
+// Scroll to the question number
+function scrollToQuestion() {
+  const questionNumber = document.getElementById("questionSearch").value;
+  const questionDiv = document.getElementById(`question-${questionNumber}`);
+
+  if (questionDiv) {
+    questionDiv.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    alert("Question number not found");
+  }
+}
+
+// Add event listener to the button
+document
+  .getElementById("scrollButton")
+  .addEventListener("click", scrollToQuestion);
+
+// Render quiz after the page is loaded
 document.addEventListener("DOMContentLoaded", renderQuiz);
