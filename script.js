@@ -91,7 +91,7 @@ const questions = [
       "C. Configuration User / Control Panel / show specified control panel items",
       "D. Configuration Computer/Control Panel / show specified control panel items",
     ],
-    correctAnswer: "B",
+    correctAnswer: "A",
   },
   {
     question:
@@ -132,7 +132,7 @@ const questions = [
     answers: [
       "A. Hạn ngạch được thiết lập bởi Group Policy. Nam cần phải đưa bốn máy chủ này vào trong cùng một OU",
       "B. Nam phải thực hiện việc này bằng cách sử dụng phần mềm của hãng thứ ba",
-      "C. Trong phần Quota Entries, Nam phải chọn tất cả các thiết lập Quota của 250 người sử dụng này sau đó export ra file. Sau đó Nam copy file này tới các máy chủ còn lại và import vào phần Quota Entries của từng phân vùng mà Nam muốn áp dụng các thiết lập hạn ngạch như máy chủ ban đầu",
+      "C. Trong phần Quota Entries, Nam phải chọn tất cả các thiết lập Quota của 250 người sử dụng này sau đó export ra file. Sau đó Nam copy file này tới các máy chủ còn lại và import vào phần Quota Entries của từng phân vùng mà Nam muốn áp dụng các thiết lập hạn ngạch như máy chủ ban đầu.",
       "D. Nam phải sử dụng Active Directory Users And Computers để thêm bốn máy chủ này vào cùng nhóm bảo mật hạn ngạch với máy chủ ban đầu mà Nam đã tạo ra",
     ],
     correctAnswer: "C",
@@ -201,7 +201,7 @@ const questions = [
       "C. Windows Server 2003 Standard, gói dịch vụ 1 (SP2)",
       "D. Windows Server 2003 R2 Enterprise",
     ],
-    correctAnswer: "A",
+    correctAnswer: "D",
   },
   {
     question: "Question 21: Tạo file screen áp dụng vào thư mục, dùng để:",
@@ -271,7 +271,7 @@ const questions = [
     question: "Question 27: Giao thức HTTP là:",
     answers: [
       "A. Giao thức tầng vận chuyển cho phép truyền tải các trang web",
-      "B. Giao thức ứng dụng cho phép các máy tính giao tiếp với nhau qua Web có khả năng liên kết       các trang Web với nhau",
+      "B. Giao thức ứng dụng cho phép các máy tính giao tiếp với nhau qua Web có khả năng liên kết các trang Web với nhau",
       "C. Giao diện web",
       "D. Một thành phần của tên miền",
     ],
@@ -363,7 +363,7 @@ const questions = [
       "C. Performances Monitor",
       "D. Event Viewer",
     ],
-    correctAnswer: "A",
+    correctAnswer: "B",
   },
   {
     question:
@@ -381,7 +381,7 @@ const questions = [
       "Question 38: Ta có folder data áp cho các user chịu các permission của Share là Read và NTFS là Write thì những user đó chịu quyền gì?",
     answers: [
       "A. Write",
-      "B. Không được truy cập (rỗng",
+      "B. Không được truy cập (rỗng)",
       "C. Full Control",
       "D. read",
     ],
@@ -462,7 +462,7 @@ const questions = [
       "C. Bạn phải break mirror giữa ổ đĩa thứ hai và thứ tư trước khi lắp đặt đĩa cứng thay thế",
       "D. Bạn phải tạo lại mirror giữa ổ cứng thứ nhất và ổ cứng mới sau khi cài đặt xong ổ cứng mới này",
     ],
-    correctAnswer: "B",
+    correctAnswer: "C",
   },
   {
     question:
@@ -1074,7 +1074,7 @@ const questions = [
       "C. Mô hình xử lý phân phối và mô hình quản lý tập trung.",
       "D. Mô hình xử lý tập trung và mô hình quản lý Workgroup",
     ],
-    correctAnswer: "D",
+    correctAnswer: "A",
   },
   {
     question:
@@ -1635,7 +1635,7 @@ const questions = [
   {
     question: "Question 172 : Port 80 là của dịch vụ nào ?",
     answers: ["A. Mail", "B. DHCP", "C. Web", "D. DNS"],
-    correctAnswer: "D",
+    correctAnswer: "C",
   },
   {
     question:
@@ -1823,7 +1823,7 @@ const questions = [
   },
   {
     question:
-      "Question 192 : Trên máy  tính PC0 có một thư mục TEMP nằm trên ổ đĩa C được chia sẻ ẨN. Bạn sẽ dùng đường dẫn nào sau đây để truy cập vào được thư mục này từ một máy khác trong mạng ?",
+      "Question 192 : Trên máy  tính PC01 có một thư mục TEMP nằm trên ổ đĩa C được chia sẻ ẨN. Bạn sẽ dùng đường dẫn nào sau đây để truy cập vào được thư mục này từ một máy khác trong mạng ?",
     answers: [
       "A. C:\\TEMP$",
       "B. \\\\ PC01\\TEMP$",
@@ -2145,6 +2145,7 @@ const questions = [
 ];
 
 // Function to render questions
+const arr = [];
 function renderQuiz() {
   const quizContainer = document.getElementById("quiz");
   questions.forEach((q, index) => {
@@ -2159,6 +2160,9 @@ function renderQuiz() {
       answerDiv.classList.add("answer");
       answerDiv.textContent = answer;
 
+      if(answer.startsWith(q.correctAnswer)) {
+        arr.push(q.correctAnswer[q.correctAnswer.length - 1]);
+      }
       answerDiv.onclick = () =>
         checkAnswer(questionDiv, answerDiv, answer, q.correctAnswer);
       questionDiv.appendChild(answerDiv);
