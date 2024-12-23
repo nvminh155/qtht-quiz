@@ -2163,6 +2163,7 @@ function renderQuiz() {
       if(answer.startsWith(q.correctAnswer)) {
         arr.push(q.correctAnswer[q.correctAnswer.length - 1]);
       }
+      
       answerDiv.onclick = () =>
         checkAnswer(questionDiv, answerDiv, answer, q.correctAnswer);
       questionDiv.appendChild(answerDiv);
